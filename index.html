@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leehou Porat — AI Performance Creative</title>
+<meta name="description" content="Leehou Porat — performance creative & AI video. Ads from A to Z: hooks, production, AI generation, edit and iteration. Ex-Lightricks, BBR Saatchi & Saatchi, founder of Grynox.">
+<meta property="og:title" content="Leehou Porat — AI Performance Creative">
+<meta property="og:description" content="Ads from A to Z: hooks, production, AI generation, edit and iteration.">
+<meta property="og:image" content="img/leehou.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230a0a0a'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial Black,Arial' font-weight='900' font-size='34' fill='%23d4ff3a'>LP</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #121212;
+    --line: #232323;
+    --text: #f2f0ea;
+    --muted: #8d8b85;
+    --accent: #d4ff3a;
+    --accent-ink: #0a0a0a;
+    --radius: 14px;
+    --gutter: clamp(16px, 4vw, 48px);
+    --max: 1280px;
+    --display: "Archivo", "Arial Black", sans-serif;
+    --body: "Inter", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--body); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  img, video { display: block; max-width: 100%; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  .label {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .label b { color: var(--accent); font-weight: 500; }
+  .display {
+    font-family: var(--display); font-weight: 800; font-stretch: 112%;
+    text-transform: uppercase; line-height: .92; letter-spacing: -.01em;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    background: rgba(10,10,10,.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent; transition: border-color .3s;
+  }
+  nav.scrolled { border-color: var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-family: var(--display); font-weight: 800; font-stretch: 112%; font-size: 17px; letter-spacing: .02em; text-transform: uppercase; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; align-items: center; font-size: 14px; color: var(--muted); }
+  .nav-links a:hover { color: var(--text); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    background: var(--accent); color: var(--accent-ink); transition: transform .2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .btn.ghost:hover { border-color: var(--text); }
+  .nav-links .btn { color: var(--accent-ink); }
+  @media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+
+  /* HERO */
+  .hero { padding: 136px 0 64px; }
+  .hero-grid { display: grid; grid-template-columns: 1.55fr 1fr; gap: clamp(24px, 5vw, 72px); align-items: end; }
+  .hero h1 { font-size: clamp(48px, 9.2vw, 132px); margin: 18px 0 28px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p.lead { font-size: clamp(17px, 1.6vw, 20px); color: #c9c7c0; max-width: 620px; }
+  .hero p.lead strong { color: var(--text); font-weight: 600; }
+  .hero-ctas { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+  .portrait { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/5; background: var(--bg-2); }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; filter: grayscale(1) contrast(1.12) brightness(.95); transition: filter .6s; }
+  .portrait:hover img { filter: grayscale(0) contrast(1.02); }
+  .portrait .tag {
+    position: absolute; left: 14px; bottom: 14px; padding: 6px 10px; border-radius: 999px;
+    background: rgba(10,10,10,.75); backdrop-filter: blur(8px); font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .portrait .tag i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 7px; box-shadow: 0 0 10px var(--accent); }
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .portrait { max-width: 340px; aspect-ratio: 1; order: -1; }
+    .hero { padding-top: 104px; }
+  }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 72px; }
+  .stat { padding: 28px 24px 28px 0; }
+  .stat + .stat { padding-left: 24px; border-left: 1px solid var(--line); }
+  .stat .num { font-family: var(--display); font-weight: 800; font-stretch: 100%; font-size: clamp(34px, 4.2vw, 56px); line-height: 1; letter-spacing: -.02em; }
+  .stat .num span { color: var(--accent); }
+  .stat p { color: var(--muted); font-size: 14px; margin-top: 10px; line-height: 1.4; }
+  @media (max-width: 760px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+    .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+
+  /* MARQUEE */
+  .marquee { overflow: hidden; padding: 22px 0; border-bottom: 1px solid var(--line); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .marquee-track { display: flex; gap: 44px; width: max-content; animation: scroll 38s linear infinite; }
+  .marquee-track span { font-family: var(--display); font-weight: 600; font-stretch: 100%; font-size: 20px; color: var(--muted); white-space: nowrap; display: flex; align-items: center; gap: 44px; }
+  .marquee-track span::after { content: "✦"; color: var(--accent); font-size: 12px; }
+  .marquee-track span.ai { color: var(--text); }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
+
+  /* SECTIONS */
+  section.block { padding: clamp(80px, 11vw, 140px) 0 0; }
+  .sec-head { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: 40px; }
+  .sec-head h2 { font-size: clamp(40px, 6.4vw, 88px); margin-top: 14px; }
+  .sec-head .intro { color: #c9c7c0; font-size: 17px; max-width: 520px; justify-self: end; }
+  .sec-head .intro strong { color: var(--text); font-weight: 600; }
+  @media (max-width: 860px) { .sec-head { grid-template-columns: 1fr; } .sec-head .intro { justify-self: start; } }
+
+  .sub-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 44px 0 16px; padding-top: 18px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+  .sub-head h3 { font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 20px; letter-spacing: -.01em; }
+  .sub-head p { color: var(--muted); font-size: 14px; max-width: 560px; }
+
+  /* CLIP GRID */
+  .grid { display: grid; gap: 14px; }
+  .grid.h3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.v3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.v4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 860px) { .grid.h3 { grid-template-columns: 1fr; } .grid.v4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .grid.v3 { grid-template-columns: repeat(2, 1fr); } }
+
+  .clip { position: relative; display: block; width: 100%; border-radius: var(--radius); overflow: hidden; background: var(--bg-2); text-align: left; isolation: isolate; }
+  .clip.v { aspect-ratio: 9/16; }
+  .clip.h { aspect-ratio: 16/9; }
+  .clip img, .clip video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .clip video { opacity: 0; transition: opacity .3s; }
+  .clip.playing video { opacity: 1; }
+  .clip::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,.75)); z-index: 1; pointer-events: none; }
+  .clip .meta { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; }
+  .clip .meta .t { font-weight: 600; font-size: 14px; line-height: 1.25; }
+  .clip .meta .s { display: block; font-family: var(--mono); font-size: 11px; color: #bdbbb4; text-transform: uppercase; letter-spacing: .05em; margin-top: 3px; }
+  .clip .play { flex: none; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); display: grid; place-items: center; transition: background .2s, transform .2s; }
+  .clip .play svg { width: 12px; height: 12px; margin-left: 2px; fill: var(--text); }
+  .clip:hover .play, .clip:focus-visible .play { background: var(--accent); transform: scale(1.08); }
+  .clip:hover .play svg, .clip:focus-visible .play svg { fill: var(--accent-ink); }
+  .clip:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .chip {
+    position: absolute; top: 12px; left: 12px; z-index: 2; padding: 5px 9px; border-radius: 999px;
+    font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
+    background: var(--accent); color: var(--accent-ink);
+  }
+  .chip.dark { background: rgba(10,10,10,.7); color: var(--text); backdrop-filter: blur(6px); }
+
+  /* NOTE / CALLOUT */
+  .note { display: flex; gap: 14px; align-items: flex-start; margin-top: 18px; padding: 16px 18px; border: 1px dashed #333; border-radius: var(--radius); color: #c9c7c0; font-size: 15px; }
+  .note b { color: var(--accent); font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; padding-top: 2px; }
+
+  /* TEST LAB (Grynox) */
+  .lab { display: grid; grid-template-columns: 300px 1fr; gap: 14px; margin-top: 16px; }
+  .lab-info { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+  .lab-info h4 { font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 22px; line-height: 1.15; }
+  .lab-info p { color: #c9c7c0; font-size: 15px; }
+  .lab-flow { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+  .lab-flow div { display: flex; gap: 12px; align-items: center; font-size: 14px; }
+  .lab-flow div span { flex: none; width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); display: grid; place-items: center; font-family: var(--mono); font-size: 12px; }
+  @media (max-width: 860px) { .lab { grid-template-columns: 1fr; } }
+
+  /* VIEWS (organic) */
+  .views { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .view-card {
+    position: relative; aspect-ratio: 9/14; border-radius: var(--radius); padding: 18px;
+    background: var(--bg-2); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: space-between;
+    transition: border-color .25s, transform .25s; overflow: hidden;
+  }
+  .view-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .view-card .big { font-family: var(--display); font-weight: 800; font-stretch: 100%; font-size: clamp(40px, 5vw, 68px); line-height: .9; letter-spacing: -.03em; }
+  .view-card .big small { font-size: .5em; color: var(--accent); margin-left: 2px; }
+  .view-card .rank { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .view-card .go { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); }
+  .view-card .go svg { width: 18px; height: 18px; stroke: currentColor; fill: none; transition: transform .25s; }
+  .view-card:hover .go { color: var(--text); }
+  .view-card:hover .go svg { transform: translate(3px, -3px); color: var(--accent); }
+  .view-card.top { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .view-card.top .big small, .view-card.top .rank, .view-card.top .go { color: var(--accent-ink); }
+  .view-card .bar { height: 3px; background: #262626; border-radius: 2px; overflow: hidden; }
+  .view-card .bar i { display: block; height: 100%; background: var(--accent); }
+  .view-card.top .bar { background: rgba(0,0,0,.15); }
+  .view-card.top .bar i { background: var(--accent-ink); }
+  @media (max-width: 960px) { .views { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .views { grid-template-columns: repeat(2, 1fr); } .view-card { aspect-ratio: 4/5; } }
+
+  /* APPROACH */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+  .step { padding: 28px 24px 8px 0; }
+  .step + .step { padding-left: 24px; border-left: 1px solid var(--line); }
+  .step .n { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .step h4 { font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 22px; margin: 14px 0 10px; }
+  .step p { color: #c9c7c0; font-size: 15px; }
+  @media (max-width: 860px) {
+    .steps { grid-template-columns: 1fr 1fr; }
+    .step:nth-child(3) { padding-left: 0; border-left: 0; }
+    .step:nth-child(n+3) { border-top: 1px solid var(--line); }
+  }
+  @media (max-width: 520px) {
+    .steps { grid-template-columns: 1fr; }
+    .step + .step { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  }
+
+  /* EXPERIENCE */
+  .xp { border-top: 1px solid var(--line); }
+  .xp-row { display: grid; grid-template-columns: 150px 1.1fr 1.6fr; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .xp-row .when { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 3px; }
+  .xp-row h4 { font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 21px; line-height: 1.2; }
+  .xp-row .role { color: var(--muted); font-size: 14px; margin-top: 4px; }
+  .xp-row p { color: #c9c7c0; font-size: 15px; }
+  .xp-row.now .when { color: var(--accent); }
+  @media (max-width: 760px) { .xp-row { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* TOOLKIT */
+  .tools { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .tool-col { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .tool-col.ai { border-color: var(--accent); }
+  .tool-col h4 { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 14px; }
+  .tool-col.ai h4 { color: var(--accent); }
+  .pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pills span { padding: 6px 12px; border-radius: 999px; border: 1px solid #2c2c2c; font-size: 14px; }
+  .tool-col.ai .pills span { border-color: rgba(212,255,58,.35); }
+  @media (max-width: 960px) { .tools { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .tools { grid-template-columns: 1fr; } }
+
+  /* CONTACT */
+  .contact { padding: clamp(100px, 14vw, 180px) 0 48px; text-align: left; }
+  .contact h2 { font-size: clamp(52px, 11vw, 168px); }
+  .contact h2 a { color: var(--accent); }
+  .contact h2 a:hover { text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 10px; }
+  .contact-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 36px; }
+  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--muted); font-size: 13px; }
+
+  /* LIGHTBOX */
+  .lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.92); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 56px 16px 24px; }
+  .lightbox.open { display: flex; }
+  .lightbox video { max-width: min(92vw, 1400px); max-height: 84vh; border-radius: 12px; background: #000; }
+  .lightbox iframe { width: min(420px, 92vw); height: min(760px, 84vh); border: 0; border-radius: 12px; background: #fff; }
+  .lightbox .close { position: absolute; top: 14px; right: 16px; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.1); font-size: 22px; line-height: 1; }
+  .lightbox .close:hover { background: var(--accent); color: var(--accent-ink); }
+  .lightbox .cap { position: absolute; top: 22px; left: 20px; right: 80px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lightbox .ext { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); font-size: 13px; color: var(--muted); text-decoration: underline; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo">Leehou<span>.</span>Porat</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#organic">Organic</a>
+      <a href="#experience">Experience</a>
+      <a href="Leehou-Porat-Resume.pdf" class="btn" target="_blank" rel="noopener">Résumé ↓</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="label"><b>●</b>&nbsp; Portfolio 2026 — Performance Creative / AI Video</div>
+        <h1 class="display">Leehou Porat<br><em>Portfolio</em></h1>
+        <p class="lead"><strong>A one-man show</strong> — concept, hooks, shoot, AI generation, edit and delivery, all under one roof. I make performance ads and social video from A to Z. Ex-<strong>Lightricks</strong> and <strong>BBR Saatchi&nbsp;&amp;&nbsp;Saatchi</strong>, founder of <strong>Grynox</strong>.</p>
+        <div class="hero-ctas">
+          <a href="#work" class="btn">See the work</a>
+          <a href="mailto:leehou7@gmail.com" class="btn ghost">leehou7@gmail.com</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <img src="img/leehou.jpg" alt="Portrait of Leehou Porat">
+        <div class="tag"><i></i>Based in Israel</div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">$M<span>+</span></div><p>Multi-million-dollar paid media behind my Lightricks ads</p></div>
+      <div class="stat"><div class="num">11.7M<span>+</span></div><p>Organic views on content I created for fun</p></div>
+      <div class="stat"><div class="num">3.4M<span>+</span></div><p>Views on my freelance Goldstar social series</p></div>
+      <div class="stat"><div class="num">10<span>+</span></div><p>Years in video, motion &amp; marketing</p></div>
+    </div>
+  </div>
+  <div class="marquee" aria-label="Tools">
+    <div class="marquee-track">
+      <span class="ai">Claude</span><span class="ai">ChatGPT</span><span class="ai">Higgsfield</span><span class="ai">Seedance</span><span class="ai">Kling</span><span>After Effects</span><span>Premiere Pro</span><span>Cinema 4D</span><span>Photoshop</span><span>Illustrator</span>
+      <span class="ai">Claude</span><span class="ai">ChatGPT</span><span class="ai">Higgsfield</span><span class="ai">Seedance</span><span class="ai">Kling</span><span>After Effects</span><span>Premiere Pro</span><span>Cinema 4D</span><span>Photoshop</span><span>Illustrator</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ LIGHTRICKS ============ -->
+<section class="block" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="label"><b>01</b> — Lightricks · 2022–2026</div>
+        <h2 class="display">Paid UA for<br>global apps</h2>
+      </div>
+      <p class="intro">Full-funnel ad creative for <strong>Videoleap, Facetune &amp; Beatleap</strong> — from US connected-TV spots to vertical social and App Store pages. Ads backed by <strong>multi-million-dollar media budgets</strong>, with several long-running winners.</p>
+    </div>
+
+    <div class="sub-head reveal"><h3>Connected TV — US market</h3><p>30-second horizontal spots for American TV.</p></div>
+    <div class="grid h3 reveal">
+      <button class="clip h" data-src="media/lt-videoleap-ctv.mp4" data-cap="Videoleap — CTV :30">
+        <img src="media/lt-videoleap-ctv.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">CTV</span>
+        <span class="meta"><span class="t">Videoleap<span class="s">:30 · US TV</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip h" data-src="media/lt-facetune-ctv.mp4" data-cap="Facetune — CTV :30 · Ease of Use">
+        <img src="media/lt-facetune-ctv.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">CTV</span>
+        <span class="meta"><span class="t">Facetune — Ease of Use<span class="s">:30 · US TV</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip h" data-src="media/lt-facetune-ctv-2.mp4" data-cap="Facetune — CTV :30">
+        <img src="media/lt-facetune-ctv-2.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">CTV</span>
+        <span class="meta"><span class="t">Facetune — Don't Waste Your Money<span class="s">:30 · US TV</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+    </div>
+
+    <div class="sub-head reveal"><h3>Social &amp; App Store</h3><p>Vertical ads for paid social, plus a Custom Product Page video for the iPhone App Store.</p></div>
+    <div class="grid v3 reveal">
+      <button class="clip v" data-src="media/lt-facetune-cpp.mp4" data-cap="Facetune — App Store Custom Product Page">
+        <img src="media/lt-facetune-cpp.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip">App Store CPP</span>
+        <span class="meta"><span class="t">Facetune<span class="s">iOS Custom Product Page</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip v" data-src="media/lt-videoleap-tutorial.mp4" data-cap="Videoleap — Tutorial ad">
+        <img src="media/lt-videoleap-tutorial.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">Paid social</span>
+        <span class="meta"><span class="t">Videoleap — "How I made this"<span class="s">Tutorial-style ad</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip v" data-src="media/lt-beatleap.mp4" data-cap="Beatleap — Paid social">
+        <img src="media/lt-beatleap.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">Paid social</span>
+        <span class="meta"><span class="t">Beatleap<span class="s">Feature walkthrough</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+    </div>
+    <div class="note reveal"><b>Real talk</b><span>The ads that performed best weren't the prettiest ones — they rarely are. Happy to walk through the winners, the data and why they worked in an interview.</span></div>
+  </div>
+</section>
+
+<!-- ============ GRYNOX ============ -->
+<section class="block" id="grynox">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="label"><b>02</b> — Grynox · Founder · 2026</div>
+        <h2 class="display">One shoot.<br>Many hooks.</h2>
+      </div>
+      <p class="intro">I founded and launched <strong>Grynox</strong> — maker of the X-POD phone mount — and ran its marketing end to end. I built ads as <strong>testing systems</strong>: the same footage, cut into different hooks, angles and styles, to let the data pick the winner. The result: <strong>strong product sales</strong>.</p>
+    </div>
+
+    <div class="lab reveal">
+      <div class="lab-info">
+        <div class="label"><b>Test 1</b> — Hook angles</div>
+        <h4>Same creator, same footage — three different openings.</h4>
+        <p>Only the first seconds change. Everything after the hook stays constant, so the test isolates what actually grabs attention.</p>
+        <div class="lab-flow">
+          <div><span>1</span>Shoot once</div>
+          <div><span>2</span>Cut 3 hooks</div>
+          <div><span>3</span>Launch &amp; read the data</div>
+        </div>
+      </div>
+      <div class="grid v3">
+        <button class="clip v" data-src="media/gx-eran-1.mp4" data-cap="Grynox — Eran · Angle A">
+          <img src="media/gx-eran-1.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">Angle A</span>
+          <span class="meta"><span class="t">Eran<span class="s">Hook variant A</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+        <button class="clip v" data-src="media/gx-eran-2.mp4" data-cap="Grynox — Eran · Angle B">
+          <img src="media/gx-eran-2.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">Angle B</span>
+          <span class="meta"><span class="t">Eran<span class="s">Hook variant B</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+        <button class="clip v" data-src="media/gx-eran-3.mp4" data-cap="Grynox — Eran · Angle C">
+          <img src="media/gx-eran-3.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">Angle C</span>
+          <span class="meta"><span class="t">Eran<span class="s">Hook variant C</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="lab reveal">
+      <div class="lab-info">
+        <div class="label"><b>Test 2</b> — Creative styles</div>
+        <h4>Same materials — four completely different ads.</h4>
+        <p>Creator-led, infographic, benefit-led ("more views") and how-to ("shoot with your phone"). Different styles reach different people; testing them side by side shows which one scales.</p>
+        <div class="lab-flow">
+          <div><span>1</span>One set of footage</div>
+          <div><span>2</span>Four creative concepts</div>
+          <div><span>3</span>Scale the winner</div>
+        </div>
+      </div>
+      <div class="grid v4">
+        <button class="clip v" data-src="media/gx-roni-creator.mp4" data-cap="Grynox — Roni · Creator">
+          <img src="media/gx-roni-creator.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">Creator</span>
+          <span class="meta"><span class="t">Roni<span class="s">Creator-led</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+        <button class="clip v" data-src="media/gx-roni-infographic.mp4" data-cap="Grynox — Roni · Infographic">
+          <img src="media/gx-roni-infographic.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">Infographic</span>
+          <span class="meta"><span class="t">Roni<span class="s">Motion infographic</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+        <button class="clip v" data-src="media/gx-roni-moreviews.mp4" data-cap="Grynox — Roni · More Views">
+          <img src="media/gx-roni-moreviews.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">Benefit</span>
+          <span class="meta"><span class="t">Roni<span class="s">"More views"</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+        <button class="clip v" data-src="media/gx-roni-shoot.mp4" data-cap="Grynox — Roni · Shoot With Your Phone">
+          <img src="media/gx-roni-shoot.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">How-to</span>
+          <span class="meta"><span class="t">Roni<span class="s">"Shoot with your phone"</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOLDSTAR ============ -->
+<section class="block" id="goldstar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="label"><b>03</b> — Goldstar · Freelance · 2026</div>
+        <h2 class="display">Live action<br>meets AI.</h2>
+      </div>
+      <p class="intro">A social series for <strong>Goldstar</strong>, one of Israel's best-known beer brands. I combined live-action footage of the talent with <strong>AI-generated scenes</strong> — taking the same two guys from a living-room couch to the top of Everest and out into space. Every ad passed <strong>800K views</strong> on the brand's page; two passed a million.</p>
+    </div>
+    <div class="grid v3 reveal">
+      <button class="clip v" data-src="media/gs-1.mp4" data-cap="Goldstar — Social · 1.5M views">
+        <img src="media/gs-1.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip">1.5M views</span>
+        <span class="meta"><span class="t">Goldstar #1<span class="s">Live action + AI · Hebrew</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip v" data-src="media/gs-2.mp4" data-cap="Goldstar — Social · 1.1M views">
+        <img src="media/gs-2.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip">1.1M views</span>
+        <span class="meta"><span class="t">Goldstar #2<span class="s">Live action + AI · Hebrew</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip v" data-src="media/gs-3.mp4" data-cap="Goldstar — Social · 844K views">
+        <img src="media/gs-3.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip">844K views</span>
+        <span class="meta"><span class="t">Goldstar #3<span class="s">Live action + AI · Hebrew</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORGANIC ============ -->
+<section class="block" id="organic">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="label"><b>04</b> — Personal · Organic</div>
+        <h2 class="display">I know what<br>makes people watch.</h2>
+      </div>
+      <p class="intro">Reels I made for fun, with zero media budget — just hooks, pacing and timing. <strong>11.7M+ organic views</strong> across five reels, one of them at <strong>7.2 million</strong>.</p>
+    </div>
+    <div class="views reveal">
+      <a class="view-card top" href="https://www.instagram.com/reel/CUkcvRFD_ua/" data-ig="CUkcvRFD_ua" target="_blank" rel="noopener">
+        <span class="rank">#01 · Instagram Reel</span>
+        <span><span class="big">7.2<small>M</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:100%"></i></span></span>
+        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="view-card" href="https://www.instagram.com/reel/CVDO_YNj_W8/" data-ig="CVDO_YNj_W8" target="_blank" rel="noopener">
+        <span class="rank">#02 · Instagram Reel</span>
+        <span><span class="big">2.1<small>M</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:29%"></i></span></span>
+        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="view-card" href="https://www.instagram.com/reel/CVSv5_DjA6X/" data-ig="CVSv5_DjA6X" target="_blank" rel="noopener">
+        <span class="rank">#03 · Instagram Reel</span>
+        <span><span class="big">1.2<small>M</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:17%"></i></span></span>
+        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="view-card" href="https://www.instagram.com/reel/CVlAeiBDTq9/" data-ig="CVlAeiBDTq9" target="_blank" rel="noopener">
+        <span class="rank">#04 · Instagram Reel</span>
+        <span><span class="big">872<small>K</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:12%"></i></span></span>
+        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+      <a class="view-card" href="https://www.instagram.com/reel/CUsNOBLDplV/" data-ig="CUsNOBLDplV" target="_blank" rel="noopener">
+        <span class="rank">#05 · Instagram Reel</span>
+        <span><span class="big">363<small>K</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:5%"></i></span></span>
+        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BBR / PRIGAT ============ -->
+<section class="block" id="bbr">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="label"><b>05</b> — BBR Saatchi &amp; Saatchi · 2018–2022</div>
+        <h2 class="display" style="font-size:clamp(30px,5.2vw,76px)">Prigat ×<br>Shalom<br>Michaelshvili</h2>
+      </div>
+      <p class="intro">Short social spots for <strong>Prigat</strong> juice starring comedian <strong>Shalom Michaelshvili</strong>, built for reach and views. At BBR I led in-house production — shooting, directing, animating 2D/3D and editing for brands like <strong>Super-Pharm, Strauss, Elite, Mini, BMW and Netflix</strong>.</p>
+    </div>
+    <div class="grid v4 reveal">
+      <button class="clip v" data-src="media/prigat-golf.mp4" data-cap="Prigat × Shalom Michaelshvili — Golf">
+        <img src="media/prigat-golf.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">:09</span>
+        <span class="meta"><span class="t">Golf<span class="s">Social short</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip v" data-src="media/prigat-ice.mp4" data-cap="Prigat × Shalom Michaelshvili — Ice cubes">
+        <img src="media/prigat-ice.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">:05</span>
+        <span class="meta"><span class="t">Ice Cubes<span class="s">Social short</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip v" data-src="media/prigat-fridge.mp4" data-cap="Prigat × Shalom Michaelshvili — Fridge">
+        <img src="media/prigat-fridge.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">:06</span>
+        <span class="meta"><span class="t">Fridge<span class="s">Social short</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+      <button class="clip v" data-src="media/prigat-squeeze.mp4" data-cap="Prigat × Shalom Michaelshvili — Squeeze">
+        <img src="media/prigat-squeeze.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+        <span class="chip dark">:08</span>
+        <span class="meta"><span class="t">Squeeze<span class="s">Social short</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="label"><b>06</b> — Experience</div>
+        <h2 class="display">10+ years<br>of making ads</h2>
+      </div>
+      <p class="intro"><a href="Leehou-Porat-Resume.pdf" target="_blank" rel="noopener" class="btn">Download résumé (PDF) ↓</a></p>
+    </div>
+    <div class="xp reveal">
+      <div class="xp-row now"><div class="when">2026 — Now</div><div><h4>National political campaign</h4><div class="role">Creative · Israel</div></div><p>High-volume, fast-turnaround video and social creative for a national campaign headquarters.</p></div>
+      <div class="xp-row"><div class="when">2026</div><div><h4>Grynox</h4><div class="role">Founder</div></div><p>Founded and launched a phone-mount brand. Ran marketing end to end — product shoots, creator content and structured hook/style testing — driving strong sales.</p></div>
+      <div class="xp-row"><div class="when">2026</div><div><h4>Freelance</h4><div class="role">Creative for major brands</div></div><p>Social ad series for Goldstar, blending live-action footage with AI-generated scenes — 3.4M+ combined views on the brand's page.</p></div>
+      <div class="xp-row"><div class="when">2022 — 2026</div><div><h4>Lightricks</h4><div class="role">Creative Marketing Designer</div></div><p>A-to-Z performance ads for Videoleap, Facetune and Beatleap — US connected-TV, paid social and App Store CPPs — backed by multi-million-dollar media spend, with several long-running winners. Trained marketing teams in After Effects.</p></div>
+      <div class="xp-row"><div class="when">2018 — 2022</div><div><h4>BBR Saatchi &amp; Saatchi</h4><div class="role">Head of In-house Production</div></div><p>Shot, directed, animated (2D/3D) and edited ads for web and TV for Super-Pharm, Strauss, Elite, Tiv Ta'am, Mini, BMW and Netflix. Supervised and mentored editors.</p></div>
+      <div class="xp-row"><div class="when">2016 — 2018</div><div><h4>Leehou Studio</h4><div class="role">Founder &amp; Creative Director</div></div><p>Independent design and video studio — campaigns for Cellcom, Issta, Cameri Theater and S. Horowitz &amp; Co. Managed designers and editors.</p></div>
+      <div class="xp-row"><div class="when">2013 — 2017</div><div><h4>Bezalel Academy of Art and Design</h4><div class="role">B.Des., Visual Communication</div></div><p>Plus advanced courses in After Effects, Cinema 4D and sound editing.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOOLKIT ============ -->
+<section class="block" id="toolkit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="label"><b>07</b> — Toolkit</div>
+        <h2 class="display">AI-native.<br>Craft-trained.</h2>
+      </div>
+      <p class="intro">I use AI every day — for ideation, scripting, image and video generation — and back it with a decade of hands-on production and motion craft.</p>
+    </div>
+    <div class="tools reveal">
+      <div class="tool-col ai"><h4>AI</h4><div class="pills"><span>Claude</span><span>ChatGPT</span><span>Higgsfield</span><span>Seedance</span><span>Kling</span><span>+ more</span></div></div>
+      <div class="tool-col"><h4>Performance</h4><div class="pills"><span>Hook testing</span><span>Creative iteration</span><span>Paid social</span><span>CTV</span><span>App Store CPP</span><span>Creator / UGC ads</span></div></div>
+      <div class="tool-col"><h4>Edit &amp; Motion</h4><div class="pills"><span>After Effects</span><span>Premiere Pro</span><span>Cinema 4D</span><span>Photoshop</span><span>Illustrator</span></div></div>
+      <div class="tool-col"><h4>Production</h4><div class="pills"><span>Cinema &amp; DSLR cameras</span><span>Lighting</span><span>Green screen</span><span>Product shoots</span><span>Directing talent</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="label"><b>●</b>&nbsp; Let's talk</div>
+    <h2 class="display" style="margin-top:18px">Let's make<br>ads that <a href="mailto:leehou7@gmail.com">win.</a></h2>
+    <div class="contact-row">
+      <a href="mailto:leehou7@gmail.com" class="btn">leehou7@gmail.com</a>
+      <a href="Leehou-Porat-Resume.pdf" class="btn ghost" target="_blank" rel="noopener">Résumé (PDF) ↓</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Leehou Porat</span>
+    <span>Performance Creative · AI Video · Social</span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Video player">
+  <div class="cap" id="lb-cap"></div>
+  <button class="close" id="lb-close" aria-label="Close">✕</button>
+  <div id="lb-body"></div>
+</div>
+
+<script>
+  // Nav border on scroll
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10), { passive: true });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Hover preview (desktop only): load + play muted on hover
+  const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  document.querySelectorAll('.clip').forEach(clip => {
+    const v = clip.querySelector('video');
+    if (canHover) {
+      clip.addEventListener('mouseenter', () => {
+        if (!v.src) v.src = clip.dataset.src;
+        v.play().then(() => clip.classList.add('playing')).catch(() => {});
+      });
+      clip.addEventListener('mouseleave', () => { v.pause(); clip.classList.remove('playing'); });
+    }
+    clip.addEventListener('click', () => {
+      v.pause(); clip.classList.remove('playing');
+      openLightbox(clip.dataset.cap, `<video src="${clip.dataset.src}" controls autoplay playsinline></video>`);
+    });
+  });
+
+  // Instagram reels open in an embedded player (falls back to Instagram link)
+  document.querySelectorAll('[data-ig]').forEach(a => a.addEventListener('click', e => {
+    if (innerWidth < 560) return; // on phones just open Instagram
+    e.preventDefault();
+    const id = a.dataset.ig;
+    openLightbox('Instagram Reel · ' + a.querySelector('.big').textContent + ' views',
+      `<iframe src="https://www.instagram.com/reel/${id}/embed" loading="lazy" allowfullscreen></iframe>
+       <a class="ext" href="https://www.instagram.com/reel/${id}/" target="_blank" rel="noopener">Open on Instagram ↗</a>`);
+  }));
+
+  // Lightbox
+  const lb = document.getElementById('lightbox'), lbBody = document.getElementById('lb-body'), lbCap = document.getElementById('lb-cap');
+  function openLightbox(cap, html) {
+    lbCap.textContent = cap; lbBody.innerHTML = html;
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lb.classList.remove('open'); lbBody.innerHTML = ''; document.body.style.overflow = '';
+  }
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
