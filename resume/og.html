@@ -1,0 +1,26 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; background: #0a0a0a; overflow: hidden; position: relative; font-family: "Archivo", sans-serif; }
+  .photo { position: absolute; right: 0; top: 0; width: 560px; height: 630px; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%; filter: grayscale(1) contrast(1.25) brightness(.92); }
+  .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #0a0a0a 0%, rgba(10,10,10,.55) 22%, transparent 55%); }
+  .text { position: absolute; left: 64px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; z-index: 2; }
+  .label { font-family: "JetBrains Mono", monospace; font-size: 20px; letter-spacing: .1em; text-transform: uppercase; color: #8d8b85; margin-bottom: 26px; }
+  .label b { color: #d4ff3a; font-weight: 500; }
+  h1 { font-weight: 800; font-stretch: 115%; text-transform: uppercase; line-height: .88; letter-spacing: -.01em; font-size: 128px; color: #f2f0ea; }
+  h1 em { font-style: normal; color: #d4ff3a; display: block; }
+  .bar { margin-top: 34px; display: inline-flex; gap: 14px; }
+  .bar span { font-size: 22px; font-weight: 600; font-stretch: 100%; padding: 9px 18px; border-radius: 999px; border: 2px solid #2c2c2c; color: #f2f0ea; }
+  .bar span.a { background: #d4ff3a; border-color: #d4ff3a; color: #0a0a0a; }
+</style></head>
+<body>
+  <div class="photo"><img src="../img/leehou.jpg" alt=""></div>
+  <div class="text">
+    <div class="label"><b>●</b>&nbsp; Portfolio 2026</div>
+    <h1>Leehou<br>Porat<em>Portfolio</em></h1>
+    <div class="bar"><span class="a">One-Man Show</span><span>Performance Creative</span><span>AI Video</span></div>
+  </div>
+</body></html>
