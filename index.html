@@ -204,6 +204,10 @@
   @media (max-width: 960px) { .views { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 560px) { .views { grid-template-columns: repeat(2, 1fr); } .view-card { aspect-ratio: 4/5; } }
 
+  .ai-views { grid-template-columns: repeat(4, 1fr); }
+  .ai-card .ai-title { font-family: var(--display); font-weight: 800; font-stretch: 100%; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.02; letter-spacing: -.01em; text-transform: uppercase; overflow-wrap: anywhere; }
+  @media (max-width: 960px) { .ai-views { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .ai-views .view-card { aspect-ratio: 9/14; } }
   /* APPROACH */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
   .step { padding: 28px 24px 8px 0; }
@@ -381,7 +385,7 @@
         <div class="label"><b>02</b> — Grynox · Founder · 2026</div>
         <h2 class="display">One shoot.<br>Many hooks.</h2>
       </div>
-      <p class="intro">I founded and launched <strong>Grynox</strong> — maker of the X-POD phone mount — and ran its marketing end to end. I built ads as <strong>testing systems</strong>: the same footage, cut into different hooks, angles and styles, to let the data pick the winner. The result: <strong>strong product sales</strong>.</p>
+      <p class="intro">I founded and launched <strong>Grynox</strong> — maker of the X-POD phone mount — and ran its marketing end to end. I built ads as <strong>testing systems</strong>: the same footage — shot for real or <strong>100% AI-generated</strong> — cut into different hooks, angles and styles, to let the data pick the winner. The result: <strong>strong product sales</strong>.</p>
     </div>
 
     <div class="lab reveal">
@@ -446,6 +450,41 @@
           <span class="chip">How-to</span>
           <span class="meta"><span class="t">Roni<span class="s">"Shoot with your phone"</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
+      </div>
+    </div>
+
+    <div class="lab reveal">
+      <div class="lab-info">
+        <div class="label"><b>Test 3</b> — 100% AI</div>
+        <h4>Cinematic vs. UGC — every frame generated with AI.</h4>
+        <p>No camera, no crew. One cinematic spot built like a movie trailer, and a set of UGC-style ads that feel like a creator filmed them on their phone — two very different looks for the same product, to test which one sells.</p>
+        <div class="lab-flow">
+          <div><span>1</span>Script &amp; prompt</div>
+          <div><span>2</span>Generate cinematic + UGC</div>
+          <div><span>3</span>Test the styles</div>
+        </div>
+      </div>
+      <div class="views ai-views">
+        <a class="view-card ai-card top" href="https://www.instagram.com/reel/DatCUXpR8ML/" data-ig="DatCUXpR8ML" data-label="Hollywood Is Collapsing" target="_blank" rel="noopener">
+          <span class="rank">100% AI · Cinematic</span>
+          <span class="ai-title">Hollywood Is Collapsing</span>
+          <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        </a>
+        <a class="view-card ai-card" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
+          <span class="rank">100% AI · UGC-style</span>
+          <span class="ai-title">How to shoot alone?</span>
+          <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        </a>
+        <a class="view-card ai-card" href="https://www.instagram.com/reel/DXFgfU0jGu2/" data-ig="DXFgfU0jGu2" data-label="You just need better angles" target="_blank" rel="noopener">
+          <span class="rank">100% AI · UGC-style</span>
+          <span class="ai-title">You just need better angles</span>
+          <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        </a>
+        <a class="view-card ai-card" href="https://www.instagram.com/reel/DXNU42GDLEo/" data-ig="DXNU42GDLEo" data-label="Get the X-POD" target="_blank" rel="noopener">
+          <span class="rank">100% AI · UGC-style</span>
+          <span class="ai-title">Get the X&#8209;POD</span>
+          <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        </a>
       </div>
     </div>
   </div>
@@ -656,7 +695,7 @@
     if (innerWidth < 560) return; // on phones just open Instagram
     e.preventDefault();
     const id = a.dataset.ig;
-    openLightbox('Instagram Reel · ' + a.querySelector('.big').textContent + ' views',
+    openLightbox(a.dataset.label ? 'Grynox · 100% AI · ' + a.dataset.label : 'Instagram Reel · ' + a.querySelector('.big').textContent + ' views',
       `<iframe src="https://www.instagram.com/reel/${id}/embed" loading="lazy" allowfullscreen></iframe>
        <a class="ext" href="https://www.instagram.com/reel/${id}/" target="_blank" rel="noopener">Open on Instagram ↗</a>`);
   }));
