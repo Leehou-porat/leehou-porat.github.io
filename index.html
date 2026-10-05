@@ -268,6 +268,18 @@
   .ig-total::after { display: none; }
   @media (max-width: 560px) { .ig-head img { width: 60px; height: 60px; } .ig-stats { gap: 12px; font-size: 13px; } .ig-total { padding: 10px; } .ig-total .st-num { font-size: 26px; } .ig-total .st-cap { font-size: 11px; } }
 
+  /* BROWSER PEEK */
+  .browser { display: flex; flex-direction: column; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--bg-2); transition: border-color .3s; }
+  .browser:hover { border-color: var(--accent); }
+  .browser-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; background: #161616; border-bottom: 1px solid var(--line); }
+  .browser-bar i { width: 10px; height: 10px; border-radius: 50%; background: #333; }
+  .browser-url { margin-left: 12px; flex: 1; max-width: 360px; padding: 4px 12px; border-radius: 999px; background: #0d0d0d; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .browser-view { position: relative; display: block; aspect-ratio: 16/9; overflow: hidden; }
+  .browser-view img { width: 100%; height: auto; transform: translateY(0); transition: transform 6s ease-in-out; }
+  .browser:hover .browser-view img { transform: translateY(calc(-100% + 100cqh)); }
+  .browser-view { container-type: size; }
+  @media (prefers-reduced-motion: reduce) { .browser-view img { transition: none; } }
+
   /* APPROACH */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
   .step { padding: 28px 24px 8px 0; }
@@ -448,6 +460,19 @@
       <p class="intro">I founded and launched <strong>Grynox</strong> — maker of the X-POD phone mount — and ran its marketing end to end. I built ads as <strong>testing systems</strong>: the same footage — shot for real or <strong>100% AI-generated</strong> — cut into different hooks, angles and styles, to let the data pick the winner. The result: <strong>strong product sales</strong>.</p>
     </div>
 
+
+    <div class="lab reveal">
+      <div class="lab-info">
+        <div class="label"><b>Live</b> — grynox.com</div>
+        <h4>See the brand live.</h4>
+        <p>The X-POD by Grynox — product, brand and store, live online. Take a look at where the ads send people.</p>
+        <a href="https://grynox.com" target="_blank" rel="noopener" class="btn" style="margin-top:auto;align-self:flex-start">Visit grynox.com ↗</a>
+      </div>
+      <a class="browser" href="https://grynox.com" target="_blank" rel="noopener" aria-label="Open grynox.com">
+        <span class="browser-bar"><i></i><i></i><i></i><span class="browser-url">grynox.com</span></span>
+        <span class="browser-view"><img src="img/grynox-site.jpg" alt="Screenshot of grynox.com" loading="lazy"></span>
+      </a>
+    </div>
     <div class="lab reveal">
       <div class="lab-info">
         <div class="label"><b>Test 1</b> — Hook angles</div>
