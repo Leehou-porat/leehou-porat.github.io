@@ -208,6 +208,65 @@
   .ai-card .ai-title { font-family: var(--display); font-weight: 800; font-stretch: 100%; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.02; letter-spacing: -.01em; text-transform: uppercase; overflow-wrap: anywhere; }
   @media (max-width: 960px) { .ai-views { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .ai-views .view-card { aspect-ratio: 9/14; } }
+  /* CAROUSEL (coverflow) */
+  .carousel { position: relative; height: clamp(440px, 46vw, 620px); overflow: hidden; border-radius: var(--radius); touch-action: pan-y; }
+  .carousel .clip { position: absolute; top: 0; left: 50%; height: calc(100% - 30px); width: auto; aspect-ratio: 9/16; transform: translateX(-50%) scale(.6); opacity: 0; pointer-events: none; transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .55s, filter .55s; }
+  .carousel .clip.is-center { transform: translateX(-50%) scale(1); opacity: 1; z-index: 3; pointer-events: auto; }
+  .carousel .clip.is-prev { transform: translateX(-128%) scale(.8); opacity: .5; z-index: 2; pointer-events: auto; filter: grayscale(.6); }
+  .carousel .clip.is-next { transform: translateX(28%) scale(.8); opacity: .5; z-index: 2; pointer-events: auto; filter: grayscale(.6); }
+  .carousel .clip.is-prev:hover, .carousel .clip.is-next:hover { opacity: .8; filter: none; }
+  .carousel .clip:not(.is-center) .meta, .carousel .clip:not(.is-center)::after { opacity: 0; }
+  .car-btn { position: absolute; top: calc(50% - 15px); z-index: 5; width: 46px; height: 46px; margin-top: -23px; border-radius: 50%; background: rgba(10,10,10,.7); backdrop-filter: blur(8px); border: 1px solid #333; display: grid; place-items: center; transition: background .2s; }
+  .car-btn svg { width: 20px; height: 20px; fill: none; stroke: var(--text); stroke-width: 2.2; }
+  .car-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .car-btn:hover svg { stroke: var(--accent-ink); }
+  .car-btn.prev { left: 10px; } .car-btn.next { right: 10px; }
+  .car-dots { position: absolute; bottom: 8px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; z-index: 5; pointer-events: none; }
+  .car-dots i { width: 6px; height: 6px; border-radius: 3px; background: #555; transition: width .3s, background .3s; }
+  .car-dots i.on { width: 20px; background: var(--accent); }
+
+  /* POSTER CARDS (AI) */
+  .poster { position: relative; aspect-ratio: 9/16; border-radius: var(--radius); overflow: hidden; background: var(--bg-2); display: block; isolation: isolate; }
+  .poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+  .poster:hover img { transform: scale(1.05); }
+  .poster::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.15) 30%, rgba(0,0,0,.88)); z-index: 1; }
+  .poster.hero { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .poster-title { position: absolute; left: 14px; right: 14px; bottom: 40px; z-index: 2; font-family: var(--display); font-weight: 800; font-stretch: 100%; text-transform: uppercase; font-size: clamp(18px, 1.7vw, 24px); line-height: 1.02; }
+  .poster.hero .poster-title { color: var(--accent); }
+  .poster-go { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #bdbbb4; }
+  .poster-go svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+  .poster:hover .poster-go { color: var(--accent); }
+
+  /* STAT TILE (Goldstar) */
+  .stat-tile { aspect-ratio: 9/16; border-radius: var(--radius); background: var(--accent); color: var(--accent-ink); padding: 18px; display: flex; flex-direction: column; justify-content: space-between; }
+  .st-num { display: block; font-family: var(--display); font-weight: 800; font-stretch: 100%; font-size: clamp(40px, 4.6vw, 64px); line-height: .9; letter-spacing: -.03em; }
+  .st-num small { font-size: .55em; }
+  .st-cap { display: block; margin-top: 8px; font-size: 14px; line-height: 1.3; }
+  .st-rows { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid rgba(0,0,0,.2); padding-top: 12px; }
+  .st-rows span { display: flex; justify-content: space-between; font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 20px; }
+  .st-rows b { font-family: var(--mono); font-weight: 500; font-size: 12px; opacity: .7; }
+  .st-foot { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; }
+  @media (max-width: 860px) { .stat-tile { aspect-ratio: auto; min-height: 100%; } }
+
+  /* INSTAGRAM-STYLE GRID (organic) */
+  .ig { max-width: 880px; margin: 0 auto; }
+  .ig-head { display: flex; align-items: center; gap: 22px; padding-bottom: 22px; margin-bottom: 4px; border-bottom: 1px solid var(--line); }
+  .ig-head img { width: 76px; height: 76px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; filter: grayscale(1); padding: 3px; border: 2px solid var(--accent); }
+  .ig-name { font-weight: 600; font-size: 18px; }
+  .ig-name span { color: var(--muted); font-weight: 400; font-size: 15px; }
+  .ig-stats { display: flex; gap: 22px; margin-top: 6px; font-size: 15px; color: #c9c7c0; flex-wrap: wrap; }
+  .ig-stats b { color: var(--text); }
+  .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 18px; }
+  .ig-tile { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--bg-2); display: block; }
+  .ig-tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s, filter .3s; }
+  .ig-tile:hover img { transform: scale(1.04); filter: brightness(.8); }
+  .ig-views { position: absolute; left: 10px; bottom: 9px; z-index: 2; display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: clamp(14px, 1.6vw, 19px); text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+  .ig-views svg { width: 11px; height: 13px; fill: currentColor; }
+  .ig-tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 65%, rgba(0,0,0,.55)); }
+  .ig-total { background: var(--accent); color: var(--accent-ink); display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; }
+  .ig-total::after { display: none; }
+  @media (max-width: 560px) { .ig-head img { width: 60px; height: 60px; } .ig-stats { gap: 12px; font-size: 13px; } .ig-total { padding: 10px; } .ig-total .st-num { font-size: 26px; } .ig-total .st-cap { font-size: 11px; } }
+
   /* APPROACH */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
   .step { padding: 28px 24px 8px 0; }
@@ -399,7 +458,7 @@
           <div><span>3</span>Launch &amp; read the data</div>
         </div>
       </div>
-      <div class="grid v3">
+      <div class="carousel" data-carousel>
         <button class="clip v" data-src="media/gx-eran-1.mp4" data-cap="Grynox — Eran · Angle A">
           <img src="media/gx-eran-1.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
           <span class="chip">Angle A</span>
@@ -415,6 +474,9 @@
           <span class="chip">Angle C</span>
           <span class="meta"><span class="t">Eran<span class="s">Hook variant C</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
+        <button class="car-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="car-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="car-dots"></div>
       </div>
     </div>
 
@@ -429,7 +491,7 @@
           <div><span>3</span>Scale the winner</div>
         </div>
       </div>
-      <div class="grid v4">
+      <div class="carousel" data-carousel>
         <button class="clip v" data-src="media/gx-roni-creator.mp4" data-cap="Grynox — Roni · Creator">
           <img src="media/gx-roni-creator.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
           <span class="chip">Creator</span>
@@ -450,6 +512,9 @@
           <span class="chip">How-to</span>
           <span class="meta"><span class="t">Roni<span class="s">"Shoot with your phone"</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
+        <button class="car-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="car-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="car-dots"></div>
       </div>
     </div>
 
@@ -464,26 +529,30 @@
           <div><span>3</span>Test the styles</div>
         </div>
       </div>
-      <div class="views ai-views">
-        <a class="view-card ai-card top" href="https://www.instagram.com/reel/DatCUXpR8ML/" data-ig="DatCUXpR8ML" data-label="Hollywood Is Collapsing" target="_blank" rel="noopener">
-          <span class="rank">100% AI · Cinematic</span>
-          <span class="ai-title">Hollywood Is Collapsing</span>
-          <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+      <div class="grid v4 posters">
+        <a class="poster hero" href="https://www.instagram.com/reel/DatCUXpR8ML/" data-ig="DatCUXpR8ML" data-label="Hollywood Is Collapsing" target="_blank" rel="noopener">
+          <img src="img/reels/DatCUXpR8ML.jpg" alt="" loading="lazy">
+          <span class="chip">100% AI · Cinematic</span>
+          <span class="poster-title">Hollywood Is Collapsing</span>
+          <span class="poster-go">Watch on Instagram <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
         </a>
-        <a class="view-card ai-card" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
-          <span class="rank">100% AI · UGC-style</span>
-          <span class="ai-title">How to shoot alone?</span>
-          <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        <a class="poster" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
+          <img src="img/reels/DW2JOPsDOCt.jpg" alt="" loading="lazy">
+          <span class="chip dark">100% AI · UGC</span>
+          <span class="poster-title">How to shoot alone?</span>
+          <span class="poster-go">Watch on Instagram <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
         </a>
-        <a class="view-card ai-card" href="https://www.instagram.com/reel/DXFgfU0jGu2/" data-ig="DXFgfU0jGu2" data-label="You just need better angles" target="_blank" rel="noopener">
-          <span class="rank">100% AI · UGC-style</span>
-          <span class="ai-title">You just need better angles</span>
-          <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        <a class="poster" href="https://www.instagram.com/reel/DXFgfU0jGu2/" data-ig="DXFgfU0jGu2" data-label="You just need better angles" target="_blank" rel="noopener">
+          <img src="img/reels/DXFgfU0jGu2.jpg" alt="" loading="lazy">
+          <span class="chip dark">100% AI · UGC</span>
+          <span class="poster-title">You just need better angles</span>
+          <span class="poster-go">Watch on Instagram <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
         </a>
-        <a class="view-card ai-card" href="https://www.instagram.com/reel/DXNU42GDLEo/" data-ig="DXNU42GDLEo" data-label="Get the X-POD" target="_blank" rel="noopener">
-          <span class="rank">100% AI · UGC-style</span>
-          <span class="ai-title">Get the X&#8209;POD</span>
-          <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
+        <a class="poster" href="https://www.instagram.com/reel/DXNU42GDLEo/" data-ig="DXNU42GDLEo" data-label="Get the X&#8209;POD" target="_blank" rel="noopener">
+          <img src="img/reels/DXNU42GDLEo.jpg" alt="" loading="lazy">
+          <span class="chip dark">100% AI · UGC</span>
+          <span class="poster-title">Get the X&#8209;POD</span>
+          <span class="poster-go">Watch on Instagram <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
         </a>
       </div>
     </div>
@@ -500,7 +569,14 @@
       </div>
       <p class="intro">A social series for <strong>Goldstar</strong>, one of Israel's best-known beer brands. I combined live-action footage of the talent with <strong>AI-generated scenes</strong> — taking the same two guys from a living-room couch to the top of Everest and out into space. Every ad passed <strong>800K views</strong> on the brand's page; two passed a million.</p>
     </div>
-    <div class="grid v3 reveal">
+    <div class="grid v4 reveal">
+      <div class="stat-tile">
+        <span class="label" style="color:var(--accent-ink)">Goldstar · Social series</span>
+        <span><span class="st-num">3.4M<small>+</small></span><span class="st-cap">combined views on the brand's page</span></span>
+        <span class="st-rows"><span><b>#1</b>1.5M</span><span><b>#2</b>1.1M</span><span><b>#3</b>844K</span></span>
+        <span class="st-foot">Live action + AI-generated scenes</span>
+      </div>
+      
       <button class="clip v" data-src="media/gs-1.mp4" data-cap="Goldstar — Social · 1.5M views">
         <img src="media/gs-1.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
         <span class="chip">1.5M views</span>
@@ -530,32 +606,37 @@
       </div>
       <p class="intro">Reels I made for fun, with zero media budget — just hooks, pacing and timing. <strong>11.7M+ organic views</strong> across five reels, one of them at <strong>7.2 million</strong>.</p>
     </div>
-    <div class="views reveal">
-      <a class="view-card top" href="https://www.instagram.com/reel/CUkcvRFD_ua/" data-ig="CUkcvRFD_ua" target="_blank" rel="noopener">
-        <span class="rank">#01 · Instagram Reel</span>
-        <span><span class="big">7.2<small>M</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:100%"></i></span></span>
-        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="view-card" href="https://www.instagram.com/reel/CVDO_YNj_W8/" data-ig="CVDO_YNj_W8" target="_blank" rel="noopener">
-        <span class="rank">#02 · Instagram Reel</span>
-        <span><span class="big">2.1<small>M</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:29%"></i></span></span>
-        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="view-card" href="https://www.instagram.com/reel/CVSv5_DjA6X/" data-ig="CVSv5_DjA6X" target="_blank" rel="noopener">
-        <span class="rank">#03 · Instagram Reel</span>
-        <span><span class="big">1.2<small>M</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:17%"></i></span></span>
-        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="view-card" href="https://www.instagram.com/reel/CVlAeiBDTq9/" data-ig="CVlAeiBDTq9" target="_blank" rel="noopener">
-        <span class="rank">#04 · Instagram Reel</span>
-        <span><span class="big">872<small>K</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:12%"></i></span></span>
-        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-      </a>
-      <a class="view-card" href="https://www.instagram.com/reel/CUsNOBLDplV/" data-ig="CUsNOBLDplV" target="_blank" rel="noopener">
-        <span class="rank">#05 · Instagram Reel</span>
-        <span><span class="big">363<small>K</small></span><span class="bar" style="display:block;margin-top:14px"><i style="width:5%"></i></span></span>
-        <span class="go">Watch <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-      </a>
+    <div class="ig reveal">
+      <div class="ig-head">
+        <img src="img/leehou.jpg" alt="">
+        <div>
+          <div class="ig-name">Leehou Porat <span>· personal reels</span></div>
+          <div class="ig-stats"><span><b>11.7M+</b> views</span><span><b>7.2M</b> top reel</span><span><b>$0</b> ad spend</span></div>
+        </div>
+      </div>
+      <div class="ig-grid">
+        <a class="ig-tile" href="https://www.instagram.com/reel/CUkcvRFD_ua/" data-ig="CUkcvRFD_ua" data-label="7.2M views" target="_blank" rel="noopener">
+          <img src="img/reels/CUkcvRFD_ua.jpg" alt="" loading="lazy"><span class="chip">#1 Reel</span>
+          <span class="ig-views"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg>7.2M</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/reel/CVDO_YNj_W8/" data-ig="CVDO_YNj_W8" data-label="2.1M views" target="_blank" rel="noopener">
+          <img src="img/reels/CVDO_YNj_W8.jpg" alt="" loading="lazy">
+          <span class="ig-views"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg>2.1M</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/reel/CVSv5_DjA6X/" data-ig="CVSv5_DjA6X" data-label="1.2M views" target="_blank" rel="noopener">
+          <img src="img/reels/CVSv5_DjA6X.jpg" alt="" loading="lazy">
+          <span class="ig-views"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg>1.2M</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/reel/CVlAeiBDTq9/" data-ig="CVlAeiBDTq9" data-label="872K views" target="_blank" rel="noopener">
+          <img src="img/reels/CVlAeiBDTq9.jpg" alt="" loading="lazy">
+          <span class="ig-views"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg>872K</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/reel/CUsNOBLDplV/" data-ig="CUsNOBLDplV" data-label="363K views" target="_blank" rel="noopener">
+          <img src="img/reels/CUsNOBLDplV.jpg" alt="" loading="lazy">
+          <span class="ig-views"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg>363K</span>
+        </a>
+        <div class="ig-tile ig-total"><span class="st-num">11.7M<small>+</small></span><span class="st-cap">organic views across five reels</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -678,16 +759,52 @@
   document.querySelectorAll('.clip').forEach(clip => {
     const v = clip.querySelector('video');
     if (canHover) {
+      const inCar = () => clip.closest('.carousel');
       clip.addEventListener('mouseenter', () => {
+        if (inCar()) return;
         if (!v.src) v.src = clip.dataset.src;
         v.play().then(() => clip.classList.add('playing')).catch(() => {});
       });
-      clip.addEventListener('mouseleave', () => { v.pause(); clip.classList.remove('playing'); });
+      clip.addEventListener('mouseleave', () => { if (inCar()) return; v.pause(); clip.classList.remove('playing'); });
     }
     clip.addEventListener('click', () => {
+      if (clip.closest('.carousel') && !clip.classList.contains('is-center')) return;
       v.pause(); clip.classList.remove('playing');
       openLightbox(clip.dataset.cap, `<video src="${clip.dataset.src}" controls autoplay playsinline></video>`);
     });
+  });
+
+
+  // Coverflow carousels: center + one on each side
+  document.querySelectorAll('[data-carousel]').forEach(car => {
+    const items = [...car.querySelectorAll('.clip')];
+    const dots = car.querySelector('.car-dots');
+    items.forEach(() => dots.appendChild(document.createElement('i')));
+    let idx = 0, visible = false;
+    const n = items.length;
+    function render() {
+      items.forEach((el, i) => {
+        el.classList.remove('is-center', 'is-prev', 'is-next');
+        const v = el.querySelector('video');
+        if (i === idx) el.classList.add('is-center');
+        else { if (i === (idx - 1 + n) % n) el.classList.add('is-prev'); else if (i === (idx + 1) % n) el.classList.add('is-next');
+               v.pause(); el.classList.remove('playing'); }
+      });
+      [...dots.children].forEach((d, i) => d.classList.toggle('on', i === idx));
+      const c = items[idx], v = c.querySelector('video');
+      if (visible) { if (!v.src) v.src = c.dataset.src; v.play().then(() => c.classList.add('playing')).catch(() => {}); }
+    }
+    const go = d => { idx = (idx + d + n) % n; render(); };
+    car.querySelector('.prev').addEventListener('click', e => { e.stopPropagation(); go(-1); });
+    car.querySelector('.next').addEventListener('click', e => { e.stopPropagation(); go(1); });
+    items.forEach((el, i) => el.addEventListener('click', () => {
+      if (el.classList.contains('is-prev')) go(-1); else if (el.classList.contains('is-next')) go(1);
+    }));
+    let x0 = null;
+    car.addEventListener('pointerdown', e => { x0 = e.clientX; });
+    car.addEventListener('pointerup', e => { if (x0 !== null && Math.abs(e.clientX - x0) > 40) go(e.clientX < x0 ? 1 : -1); x0 = null; });
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (!visible) items.forEach(el => el.querySelector('video').pause()); render(); }, { threshold: .4 }).observe(car);
+    render();
   });
 
   // Instagram reels open in an embedded player (falls back to Instagram link)
@@ -695,7 +812,7 @@
     if (innerWidth < 560) return; // on phones just open Instagram
     e.preventDefault();
     const id = a.dataset.ig;
-    openLightbox(a.dataset.label ? 'Grynox · 100% AI · ' + a.dataset.label : 'Instagram Reel · ' + a.querySelector('.big').textContent + ' views',
+    openLightbox((a.classList.contains('poster') ? 'Grynox · 100% AI · ' : 'Instagram Reel · ') + a.dataset.label,
       `<iframe src="https://www.instagram.com/reel/${id}/embed" loading="lazy" allowfullscreen></iframe>
        <a class="ext" href="https://www.instagram.com/reel/${id}/" target="_blank" rel="noopener">Open on Instagram ↗</a>`);
   }));
