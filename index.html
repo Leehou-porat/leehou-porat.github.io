@@ -292,6 +292,16 @@
 
   .grid.compact { max-width: 760px; }
   @media (max-width: 860px) { .grid.compact { max-width: 480px; } }
+  @media (max-width: 560px) {
+    .grid.compact { grid-template-columns: repeat(4, 1fr); gap: 6px; max-width: none; }
+    .grid.compact .clip { border-radius: 10px; }
+    .grid.compact .clip .meta { left: 6px; right: 6px; bottom: 6px; }
+    .grid.compact .clip .meta .t { font-size: 10px; }
+    .grid.compact .clip .meta .t .s, .grid.compact .chip { display: none; }
+    .grid.compact .clip .play { display: none; }
+    .grid.compact .clip .meta .t { white-space: nowrap; }
+    .carousel { height: 330px; margin: 20px 0; }
+  }
 
   /* APPROACH */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
