@@ -213,7 +213,7 @@
   @media (max-width: 960px) { .ai-views { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .ai-views .view-card { aspect-ratio: 9/14; } }
   /* CAROUSEL (coverflow) */
-  .carousel { position: relative; height: clamp(440px, 46vw, 620px); overflow: hidden; border-radius: var(--radius); touch-action: pan-y; }
+  .carousel { position: relative; align-self: center; margin: 28px 0; height: clamp(380px, 36vw, 500px); overflow: hidden; border-radius: var(--radius); touch-action: pan-y; }
   .carousel .clip { position: absolute; top: 0; left: 50%; height: calc(100% - 30px); width: auto; aspect-ratio: 9/16; transform: translateX(-50%) scale(.6); opacity: 0; pointer-events: none; transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .55s, filter .55s; }
   .carousel .clip.is-center { transform: translateX(-50%) scale(1); opacity: 1; z-index: 3; pointer-events: auto; }
   .carousel .clip.is-prev { transform: translateX(-128%) scale(.8); opacity: .5; z-index: 2; pointer-events: auto; filter: grayscale(.6); }
@@ -289,6 +289,9 @@
     .poster-title { font-size: 15px; left: 10px; right: 10px; }
     .poster-go { left: 10px; right: 10px; font-size: 11px; }
   }
+
+  .grid.compact { max-width: 760px; }
+  @media (max-width: 860px) { .grid.compact { max-width: 480px; } }
 
   /* APPROACH */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
@@ -687,7 +690,7 @@
       </div>
       <p class="intro">After my own trick-shot reels went viral, <strong>Prigat</strong> asked me to bring the same <strong>impossible shots</strong> to their brand — starring their presenter, comedian <strong>Shalom Michaelshvili</strong>. At BBR I led in-house production: shooting, directing, 2D/3D animation and editing for brands like <strong>Super-Pharm, Strauss, Elite, Mini, BMW and Netflix</strong>.</p>
     </div>
-    <div class="grid v4 reveal">
+    <div class="grid v4 reveal compact">
       <button class="clip v" data-src="media/prigat-squeeze.mp4" data-cap="Prigat × Shalom Michaelshvili — Squeeze">
         <img src="media/prigat-squeeze.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
         <span class="chip dark">:08</span>
