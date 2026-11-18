@@ -230,6 +230,7 @@
   .car-dots i.on { width: 20px; background: var(--accent); }
 
   /* POSTER CARDS (AI) */
+  button.poster { width: 100%; text-align: left; padding: 0; }
   .poster { position: relative; aspect-ratio: 9/16; border-radius: var(--radius); overflow: hidden; background: var(--bg-2); display: block; isolation: isolate; }
   .poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
   .poster:hover img { transform: scale(1.05); }
@@ -569,22 +570,22 @@
 
     <div class="lab reveal">
       <div class="lab-info">
-        <div class="label"><b>Full funnel</b> — 100% AI</div>
-        <h4>Cinematic for the brand, UGC for sales — every frame generated with AI.</h4>
-        <p>No camera, no crew. A cinematic spot built like a movie trailer to grow <strong>brand awareness</strong>, and UGC-style ads that feel like a creator filmed them on their phone, built to <strong>drive purchases</strong>.</p>
+        <div class="label"><b>Full funnel</b> — AI-made</div>
+        <h4>A rap video for the brand, UGC for sales — all made with AI.</h4>
+        <p>A rap music video with an AI rapper and an AI-made song — 99% AI, plus a couple of real X&#8209;POD shots — to grow <strong>brand awareness</strong>. And UGC-style ads that feel like a creator filmed them on their phone, 100% AI, built to <strong>drive purchases</strong>.</p>
         <div class="lab-flow">
           <div><span>1</span>Script &amp; prompt</div>
-          <div><span>2</span>Cinematic → brand awareness</div>
+          <div><span>2</span>Rap video → brand awareness</div>
           <div><span>3</span>UGC → conversions</div>
         </div>
       </div>
       <div class="grid v4 posters">
-        <a class="poster hero" href="https://www.instagram.com/reel/DatCUXpR8ML/" data-ig="DatCUXpR8ML" data-label="Hollywood Is Collapsing" target="_blank" rel="noopener">
-          <img src="img/reels/DatCUXpR8ML.jpg" alt="" loading="lazy">
-          <span class="chip">100% AI · Cinematic</span>
-          <span class="poster-title">Hollywood<br>Is Collapsing</span>
-          <span class="poster-go">Watch on Instagram <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-        </a>
+        <button class="poster hero" data-src="media/gx-xpod-rap.mp4" data-cap="Grynox · 99% AI · X-POD Rap — music video">
+          <img src="media/gx-xpod-rap.jpg" alt="" loading="lazy">
+          <span class="chip">99% AI · Music video</span>
+          <span class="poster-title">X&#8209;POD<br>Rap</span>
+          <span class="poster-go">Watch <svg viewBox="0 0 10 12" style="fill:currentColor;stroke:none;width:10px;height:12px"><path d="M0 0l10 6-10 6z"/></svg></span>
+        </button>
         <a class="poster" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
           <img src="img/reels/DW2JOPsDOCt.jpg" alt="" loading="lazy">
           <span class="chip outline">100% AI · UGC</span>
@@ -879,6 +880,9 @@
     car.addEventListener('pointerup', e => { if (x0 !== null && Math.abs(e.clientX - x0) > 40) go(e.clientX < x0 ? 1 : -1); x0 = null; });
     render();
   });
+
+  document.querySelectorAll('.poster[data-src]').forEach(p => p.addEventListener('click', () =>
+    openLightbox(p.dataset.cap, `<video src="${p.dataset.src}" controls autoplay playsinline></video>`)));
 
   // Instagram reels open in an embedded player (falls back to Instagram link)
   document.querySelectorAll('[data-ig]').forEach(a => a.addEventListener('click', e => {
