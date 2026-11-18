@@ -794,6 +794,19 @@
 
 <script>
 
+
+  // Region: Israeli visitors see Goldstar first. Override with ?region=il / ?region=intl (or /il/, /intl/)
+  (() => {
+    const q = new URLSearchParams(location.search).get('region');
+    const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+    const il = q ? q === 'il' : /Jerusalem|Tel_Aviv/.test(tz);
+    if (il) {
+      document.getElementById('work').before(document.getElementById('goldstar'));
+      document.querySelectorAll('a[href="#work"]').forEach(a => a.setAttribute('href', '#goldstar'));
+    }
+    document.querySelectorAll('main .sec-head .label b').forEach((b, i) => b.textContent = String(i + 1).padStart(2, '0'));
+  })();
+
   // No one-word last lines: glue the last two words of every text block together
   document.querySelectorAll('p, h1, h2, h3, h4, li, .s, .t, .st-cap, .st-foot, .poster-title, .ig-name, .lab-flow div, .role, .label').forEach(el => {
     const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
