@@ -314,6 +314,25 @@
     .carousel { height: 330px; margin: 20px 0; }
   }
 
+  /* HIGHLIGHTS */
+  .hl { display: flex; flex-direction: column; gap: 14px; }
+  .hl-row { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 14px; }
+  .hl-row.four { grid-template-columns: repeat(4, 1fr); }
+  .hl-side { display: flex; flex-direction: column; gap: 14px; }
+  @media (min-width: 861px) { .hl-row:not(.four) > .clip.v { aspect-ratio: auto; height: 100%; min-height: 100%; } }
+  .hl-links a { padding: 6px 0; }
+  .hl-more { flex: 1; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .hl-links { display: flex; flex-direction: column; }
+  .hl-links a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 17px; transition: color .2s; }
+  .hl-links a span { font-family: var(--body); font-weight: 400; font-size: 13px; color: var(--muted); text-align: right; }
+  .hl-links a:hover { color: var(--accent); }
+  @media (max-width: 860px) {
+    .hl-row { grid-template-columns: 1fr 1fr; }
+    .hl-side { grid-column: 1 / -1; }
+    .hl-row.four { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) { .hl-links a { font-size: 15px; } .hl-links a span { font-size: 11.5px; } }
+
   /* APPROACH */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
   .step { padding: 28px 24px 8px 0; }
@@ -383,6 +402,7 @@
   <div class="wrap">
     <a href="#top" class="logo">Leehou<span>.</span>Porat</a>
     <div class="nav-links">
+      <a href="#highlights">Highlights</a>
       <a href="#work">Work</a>
       <a href="#organic">Organic</a>
       <a href="#experience">Experience</a>
@@ -399,7 +419,7 @@
         <h1 class="display">Leehou Porat<br><em>Portfolio</em></h1>
         <p class="lead"><strong>A one-man show</strong> — concept, hooks, shoot, AI generation, edit and delivery, all under one roof. I make performance ads and social video from A to Z. Ex-<strong>Lightricks</strong> and <strong>BBR Saatchi&nbsp;&amp;&nbsp;Saatchi</strong>, founder of <strong>Grynox</strong>.</p>
         <div class="hero-ctas">
-          <a href="#work" class="btn">See the work</a>
+          <a href="#highlights" class="btn">See the work</a>
           <a href="mailto:leehou7@gmail.com" class="btn ghost">leehou7@gmail.com</a>
         </div>
       </div>
@@ -425,6 +445,66 @@
 </header>
 
 <main>
+
+<!-- ============ HIGHLIGHTS ============ -->
+<section class="block" id="highlights">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <div class="label"><span style="color:var(--accent)">★</span> — Highlights</div>
+        <h2 class="display">My favorites,<br>up front.</h2>
+      </div>
+      <p class="intro">Seven pieces I'm proudest of, across performance ads, AI and VFX. <strong>The full story behind each one is below.</strong></p>
+    </div>
+    <div class="hl reveal">
+      <div class="hl-row">
+        <button class="clip v" data-src="media/gs-1.mp4" data-cap="Goldstar — Social · 1.5M views">
+          <img src="media/gs-1.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">1.5M views</span>
+          <span class="meta"><span class="t">Goldstar<span class="s">Live action + AI</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+        <button class="clip v" data-src="media/lt-beatleap.mp4" data-cap="Beatleap — Edit videos in seconds">
+          <img src="media/lt-beatleap.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip dark">Lightricks</span>
+          <span class="meta"><span class="t">Beatleap<span class="s">Edit videos in seconds</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+        <div class="hl-side">
+          <button class="clip h" data-src="media/lt-facetune-ctv.mp4" data-cap="Facetune — CTV :30 · Ease of Use">
+          <img src="media/lt-facetune-ctv.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip dark">CTV · US TV</span>
+          <span class="meta"><span class="t">Facetune — Ease of Use<span class="s">Lightricks · :30</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+          <div class="hl-more">
+            <div class="label">The full portfolio ↓</div>
+            <div class="hl-links"><a href="#work">Lightricks <span>$M+ paid UA · CTV · App Store</span></a><a href="#grynox">Grynox <span>Founder · AI ads · creators</span></a><a href="#goldstar">Goldstar <span>3.4M+ views · live action + AI</span></a><a href="#organic">Trick shots <span>11.7M+ organic views · no AI</span></a><a href="#bbr">Prigat · BBR <span>Saatchi &amp; Saatchi · 2018–2022</span></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="hl-row four">
+        <button class="clip v" data-src="media/gx-xpod-soul.mp4" data-cap="Grynox · 90% AI · X-POD Soul — music video">
+          <img src="media/gx-xpod-soul.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip">90% AI</span>
+          <span class="meta"><span class="t">X&#8209;POD Soul<span class="s">Music video · Grynox</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+        <a class="clip v" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
+          <img src="img/reels/DW2JOPsDOCt.jpg" alt="" loading="lazy">
+          <span class="chip outline">100% AI · UGC</span>
+          <span class="meta"><span class="t">How to shoot alone?<span class="s">UGC ad · Grynox</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </a>
+        <a class="clip v" href="https://www.instagram.com/reel/CVSv5_DjA6X/" data-ig="CVSv5_DjA6X" data-label="1.2M views" target="_blank" rel="noopener">
+          <img src="img/reels/CVSv5_DjA6X.jpg" alt="" loading="lazy">
+          <span class="chip">1.2M views</span>
+          <span class="meta"><span class="t">Drone trick shot<span class="s">Hand-made VFX · no AI</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </a>
+        <button class="clip v" data-src="media/prigat-squeeze.mp4" data-cap="Prigat × Shalom Michaelshvili — Squeeze">
+          <img src="media/prigat-squeeze.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+          <span class="chip dark">Prigat</span>
+          <span class="meta"><span class="t">Squeeze<span class="s">Trick shot · Shalom M.</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ LIGHTRICKS ============ -->
 <section class="block" id="work">
@@ -820,7 +900,7 @@
     const il = q ? q === 'il' : /Jerusalem|Tel_Aviv/.test(tz);
     if (il) {
       document.getElementById('work').before(document.getElementById('goldstar'));
-      document.querySelectorAll('a[href="#work"]').forEach(a => a.setAttribute('href', '#goldstar'));
+      document.querySelectorAll('.nav-links a[href="#work"]').forEach(a => a.setAttribute('href', '#goldstar'));
     }
     document.querySelectorAll('main .sec-head .label b').forEach((b, i) => b.textContent = String(i + 1).padStart(2, '0'));
   })();
@@ -851,6 +931,7 @@
   const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
   document.querySelectorAll('.clip').forEach(clip => {
     const v = clip.querySelector('video');
+    if (!v) return;
     if (canHover) {
       const inCar = () => clip.closest('.carousel');
       clip.addEventListener('mouseenter', () => {
