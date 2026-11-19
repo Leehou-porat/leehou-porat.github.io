@@ -317,23 +317,33 @@
   /* HIGHLIGHTS */
   .hero { padding-bottom: 0; }
   #highlights { padding-top: clamp(24px, 5vw, 72px); }
-  .hl { display: flex; flex-direction: column; gap: 14px; }
-  .hl-row { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 14px; }
-  .hl-row.four { grid-template-columns: repeat(4, 1fr); }
-  .hl-side { display: flex; flex-direction: column; gap: 14px; }
-  @media (min-width: 861px) { .hl-row:not(.four) > .clip.v { aspect-ratio: auto; height: 100%; min-height: 100%; } }
-  .hl-links a { padding: 6px 0; }
-  .hl-more { flex: 1; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-2); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
-  .hl-links { display: flex; flex-direction: column; }
-  .hl-links a { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-top: 1px solid var(--line); font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 17px; transition: color .2s; }
-  .hl-links a span { font-family: var(--body); font-weight: 400; font-size: 13px; color: var(--muted); text-align: right; }
-  .hl-links a:hover { color: var(--accent); }
-  @media (max-width: 860px) {
-    .hl-row { grid-template-columns: 1fr 1fr; }
-    .hl-side { grid-column: 1 / -1; }
-    .hl-row.four { grid-template-columns: 1fr 1fr; }
+  .hl-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
+  .hl-strip .clip .meta { left: 10px; right: 10px; bottom: 10px; }
+  .hl-strip .clip .meta .t { font-size: 13px; }
+  .hl-strip .clip .meta .s { font-size: 10px; }
+  .hl-strip .chip { font-size: 10px; padding: 4px 8px; top: 10px; left: 10px; }
+  .hl-strip .clip .play { width: 28px; height: 28px; }
+  .hl-strip .clip .play svg { width: 9px; height: 9px; }
+  .hl-more { margin-top: 18px; display: grid; grid-template-columns: 170px 1fr; gap: 16px; align-items: start; }
+  .hl-links { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .hl-links a { display: flex; flex-direction: column; gap: 3px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-2); font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 16px; transition: border-color .2s, color .2s; }
+  .hl-links a span { font-family: var(--body); font-weight: 400; font-size: 12px; color: var(--muted); line-height: 1.35; }
+  .hl-links a:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 1100px) {
+    .hl-strip { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter) 4px; scroll-padding: 0 var(--gutter); }
+    .hl-strip::-webkit-scrollbar { display: none; }
+    .hl-strip .clip { flex: 0 0 22%; scroll-snap-align: start; }
+    .hl-more { grid-template-columns: 1fr; }
+    .hl-links { grid-template-columns: repeat(3, 1fr); }
   }
-  @media (max-width: 560px) { .hl-links a { font-size: 15px; } .hl-links a span { font-size: 11.5px; } }
+  @media (max-width: 760px) {
+    .hl-strip .clip { flex-basis: 31%; border-radius: 10px; }
+    .hl-strip .clip .meta { left: 7px; right: 7px; bottom: 7px; }
+    .hl-strip .clip .meta .t { font-size: 11px; }
+    .hl-strip .clip .meta .s, .hl-strip .clip .play { display: none; }
+    .hl-strip .chip { font-size: 8.5px; padding: 3px 6px; top: 6px; left: 6px; }
+    .hl-links { grid-template-columns: 1fr 1fr; }
+  }
 
   /* APPROACH */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
@@ -458,52 +468,46 @@
       </div>
       <p class="intro">Seven pieces I'm proudest of, across performance ads, AI and VFX. <strong>The full story behind each one is below.</strong></p>
     </div>
-    <div class="hl reveal">
-      <div class="hl-row">
-        <button class="clip v" data-src="media/gs-1.mp4" data-cap="Goldstar — Social · 1.5M views">
+    <div class="hl-strip reveal">
+      <button class="clip v" data-src="media/gs-1.mp4" data-cap="Goldstar — Social · 1.5M views">
           <img src="media/gs-1.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
           <span class="chip">1.5M views</span>
           <span class="meta"><span class="t">Goldstar<span class="s">Live action + AI</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
-        <button class="clip v" data-src="media/lt-beatleap.mp4" data-cap="Beatleap — Edit videos in seconds">
+      <button class="clip v" data-src="media/lt-beatleap.mp4" data-cap="Beatleap — Edit videos in seconds">
           <img src="media/lt-beatleap.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
           <span class="chip dark">Lightricks</span>
           <span class="meta"><span class="t">Beatleap<span class="s">Edit videos in seconds</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
-        <div class="hl-side">
-          <button class="clip h" data-src="media/lt-facetune-ctv.mp4" data-cap="Facetune — CTV :30 · Ease of Use">
+      <button class="clip v" data-src="media/lt-facetune-ctv.mp4" data-cap="Facetune — CTV :30 · Ease of Use">
           <img src="media/lt-facetune-ctv.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
           <span class="chip dark">CTV · US TV</span>
           <span class="meta"><span class="t">Facetune — Ease of Use<span class="s">Lightricks · :30</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
-          <div class="hl-more">
-            <div class="label">The full portfolio ↓</div>
-            <div class="hl-links"><a href="#work">Lightricks <span>$M+ paid UA · CTV · App Store</span></a><a href="#grynox">Grynox <span>Founder · AI ads · creators</span></a><a href="#goldstar">Goldstar <span>3.4M+ views · live action + AI</span></a><a href="#organic">Trick shots <span>11.7M+ organic views · no AI</span></a><a href="#bbr">Prigat · BBR <span>Saatchi &amp; Saatchi · 2018–2022</span></a></div>
-          </div>
-        </div>
-      </div>
-      <div class="hl-row four">
-        <button class="clip v" data-src="media/gx-xpod-soul.mp4" data-cap="Grynox · 90% AI · X-POD Soul — music video">
+      <button class="clip v" data-src="media/gx-xpod-soul.mp4" data-cap="Grynox · 90% AI · X-POD Soul — music video">
           <img src="media/gx-xpod-soul.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
           <span class="chip">90% AI</span>
           <span class="meta"><span class="t">X&#8209;POD Soul<span class="s">Music video · Grynox</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
-        <a class="clip v" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
+      <a class="clip v" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
           <img src="img/reels/DW2JOPsDOCt.jpg" alt="" loading="lazy">
           <span class="chip outline">100% AI · UGC</span>
           <span class="meta"><span class="t">How to shoot alone?<span class="s">UGC ad · Grynox</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </a>
-        <a class="clip v" href="https://www.instagram.com/reel/CVSv5_DjA6X/" data-ig="CVSv5_DjA6X" data-label="1.2M views" target="_blank" rel="noopener">
+      <a class="clip v" href="https://www.instagram.com/reel/CVSv5_DjA6X/" data-ig="CVSv5_DjA6X" data-label="1.2M views" target="_blank" rel="noopener">
           <img src="img/reels/CVSv5_DjA6X.jpg" alt="" loading="lazy">
           <span class="chip">1.2M views</span>
           <span class="meta"><span class="t">Drone trick shot<span class="s">Hand-made VFX · no AI</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </a>
-        <button class="clip v" data-src="media/prigat-squeeze.mp4" data-cap="Prigat × Shalom Michaelshvili — Squeeze">
+      <button class="clip v" data-src="media/prigat-squeeze.mp4" data-cap="Prigat × Shalom Michaelshvili — Squeeze">
           <img src="media/prigat-squeeze.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
           <span class="chip dark">Prigat</span>
           <span class="meta"><span class="t">Squeeze<span class="s">Trick shot · Shalom M.</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
-      </div>
+    </div>
+    <div class="hl-more reveal">
+      <div class="label">The full portfolio ↓</div>
+      <div class="hl-links"><a href="#work">Lightricks <span>$M+ paid UA · CTV · App Store</span></a><a href="#grynox">Grynox <span>Founder · AI ads · creators</span></a><a href="#goldstar">Goldstar <span>3.4M+ views · live action + AI</span></a><a href="#organic">Trick shots <span>11.7M+ organic views · no AI</span></a><a href="#bbr">Prigat · BBR <span>Saatchi &amp; Saatchi · 2018–2022</span></a></div>
     </div>
   </div>
 </section>
@@ -908,7 +912,7 @@
   })();
 
   // No one-word last lines: glue the last two words of every text block together
-  document.querySelectorAll('p, h1, h2, h3, h4, li, .s, .t, .st-cap, .st-foot, .poster-title, .ig-name, .lab-flow div, .role, .label').forEach(el => {
+  document.querySelectorAll('p, h1, h2, h3, h4, li, .s, .t, .st-cap, .st-foot, .poster-title, .ig-name, .lab-flow div, .role, .label, .hl-links a span').forEach(el => {
     const tw = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
     let n, last = null;
     while ((n = tw.nextNode())) if (n.data.trim()) last = n;
