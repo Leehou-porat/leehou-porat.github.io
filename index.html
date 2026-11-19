@@ -231,6 +231,16 @@
 
   /* POSTER CARDS (AI) */
   button.poster { width: 100%; text-align: left; padding: 0; }
+  .grid.posters { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .posters .chip { font-size: 10px; padding: 4px 8px; top: 10px; left: 10px; }
+  .posters .poster-title { font-size: clamp(15px, 1.3vw, 19px); left: 12px; right: 12px; }
+  .posters .poster-go { left: 12px; right: 12px; }
+  @media (max-width: 860px) {
+    .grid.posters { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding-bottom: 6px; scrollbar-width: none; }
+    .grid.posters::-webkit-scrollbar { display: none; }
+    .grid.posters .poster { flex: 0 0 42%; scroll-snap-align: start; }
+    .posters .poster-title { font-size: 13.5px; left: 10px; right: 10px; }
+  }
   .poster { position: relative; aspect-ratio: 9/16; border-radius: var(--radius); overflow: hidden; background: var(--bg-2); display: block; isolation: isolate; }
   .poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
   .poster:hover img { transform: scale(1.05); }
@@ -571,15 +581,21 @@
     <div class="lab reveal">
       <div class="lab-info">
         <div class="label"><b>Full funnel</b> — AI-made</div>
-        <h4>A rap video for the brand, UGC for sales — all made with AI.</h4>
-        <p>A rap music video with an AI rapper and an AI-made song — 99% AI, plus a couple of real X&#8209;POD shots — to grow <strong>brand awareness</strong>. And UGC-style ads that feel like a creator filmed them on their phone, 100% AI, built to <strong>drive purchases</strong>.</p>
+        <h4>Music videos for the brand, UGC for sales — all made with AI.</h4>
+        <p>Two music videos — an AI soul singer and an AI rapper, with AI-made songs and a few real X&#8209;POD shots (90% and 99% AI) — to grow <strong>brand awareness</strong>. And UGC-style ads that feel like a creator filmed them on their phone, 100% AI, built to <strong>drive purchases</strong>.</p>
         <div class="lab-flow">
           <div><span>1</span>Script &amp; prompt</div>
-          <div><span>2</span>Rap video → brand awareness</div>
+          <div><span>2</span>Music videos → brand awareness</div>
           <div><span>3</span>UGC → conversions</div>
         </div>
       </div>
-      <div class="grid v4 posters">
+      <div class="grid posters">
+        <button class="poster hero" data-src="media/gx-xpod-soul.mp4" data-cap="Grynox · 90% AI · X-POD Soul — music video">
+          <img src="media/gx-xpod-soul.jpg" alt="" loading="lazy">
+          <span class="chip">90% AI · Music video</span>
+          <span class="poster-title">X&#8209;POD<br>Soul</span>
+          <span class="poster-go">Watch <svg viewBox="0 0 10 12" style="fill:currentColor;stroke:none;width:10px;height:12px"><path d="M0 0l10 6-10 6z"/></svg></span>
+        </button>
         <button class="poster hero" data-src="media/gx-xpod-rap.mp4" data-cap="Grynox · 99% AI · X-POD Rap — music video">
           <img src="media/gx-xpod-rap.jpg" alt="" loading="lazy">
           <span class="chip">99% AI · Music video</span>
