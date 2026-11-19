@@ -489,11 +489,11 @@
           <span class="chip">90% AI</span>
           <span class="meta"><span class="t">X&#8209;POD Soul<span class="s">Music video · Grynox</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
         </button>
-      <a class="clip v" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
-          <img src="img/reels/DW2JOPsDOCt.jpg" alt="" loading="lazy">
+      <button class="clip v" data-src="media/gx-ugc-shoot-alone.mp4" data-cap="Grynox · 100% AI · UGC — How to shoot alone?">
+          <img src="img/reels/DW2JOPsDOCt.jpg" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
           <span class="chip outline">100% AI · UGC</span>
           <span class="meta"><span class="t">How to shoot&nbsp;alone?<span class="s">UGC ad · Grynox</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
-        </a>
+        </button>
       <a class="clip v" href="https://www.instagram.com/reel/CVSv5_DjA6X/" data-ig="CVSv5_DjA6X" data-label="1.2M views" target="_blank" rel="noopener">
           <img src="img/reels/CVSv5_DjA6X.jpg" alt="" loading="lazy">
           <span class="chip">1.2M views</span>
@@ -688,24 +688,24 @@
           <span class="poster-title">X&#8209;POD<br>Rap</span>
           <span class="poster-go">Watch <svg viewBox="0 0 10 12" style="fill:currentColor;stroke:none;width:10px;height:12px"><path d="M0 0l10 6-10 6z"/></svg></span>
         </button>
-        <a class="poster" href="https://www.instagram.com/reel/DW2JOPsDOCt/" data-ig="DW2JOPsDOCt" data-label="How to shoot alone?" target="_blank" rel="noopener">
+        <button class="poster" data-src="media/gx-ugc-shoot-alone.mp4" data-cap="Grynox · 100% AI · UGC — How to shoot alone?">
           <img src="img/reels/DW2JOPsDOCt.jpg" alt="" loading="lazy">
           <span class="chip outline">100% AI · UGC</span>
           <span class="poster-title">How to<br>shoot alone?</span>
-          <span class="poster-go">Watch on Instagram <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-        </a>
-        <a class="poster" href="https://www.instagram.com/reel/DXFgfU0jGu2/" data-ig="DXFgfU0jGu2" data-label="You just need better angles" target="_blank" rel="noopener">
+          <span class="poster-go">Watch <svg viewBox="0 0 10 12" style="fill:currentColor;stroke:none;width:10px;height:12px"><path d="M0 0l10 6-10 6z"/></svg></span>
+        </button>
+        <button class="poster" data-src="media/gx-ugc-better-angles.mp4" data-cap="Grynox · 100% AI · UGC — You just need better angles">
           <img src="img/reels/DXFgfU0jGu2.jpg" alt="" loading="lazy">
           <span class="chip outline">100% AI · UGC</span>
           <span class="poster-title">You just need<br>better angles</span>
-          <span class="poster-go">Watch on Instagram <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-        </a>
-        <a class="poster" href="https://www.instagram.com/reel/DXNU42GDLEo/" data-ig="DXNU42GDLEo" data-label="Get the X&#8209;POD" target="_blank" rel="noopener">
+          <span class="poster-go">Watch <svg viewBox="0 0 10 12" style="fill:currentColor;stroke:none;width:10px;height:12px"><path d="M0 0l10 6-10 6z"/></svg></span>
+        </button>
+        <button class="poster" data-src="media/gx-ugc-get-xpod.mp4" data-cap="Grynox · 100% AI · UGC — Get the X&#8209;POD">
           <img src="img/reels/DXNU42GDLEo.jpg" alt="" loading="lazy">
           <span class="chip outline">100% AI · UGC</span>
           <span class="poster-title">Get the<br>X&#8209;POD</span>
-          <span class="poster-go">Watch on Instagram <svg viewBox="0 0 24 24" stroke-width="2"><path d="M7 17L17 7M8 7h9v9"/></svg></span>
-        </a>
+          <span class="poster-go">Watch <svg viewBox="0 0 10 12" style="fill:currentColor;stroke:none;width:10px;height:12px"><path d="M0 0l10 6-10 6z"/></svg></span>
+        </button>
       </div>
     </div>
   </div>
@@ -989,7 +989,6 @@
 
   // Instagram reels open in an embedded player (falls back to Instagram link)
   document.querySelectorAll('[data-ig]').forEach(a => a.addEventListener('click', e => {
-    if (innerWidth < 560) return; // on phones just open Instagram
     e.preventDefault();
     const id = a.dataset.ig;
     openLightbox((a.classList.contains('poster') ? 'Grynox · 100% AI · ' : 'Instagram Reel · ') + a.dataset.label,
