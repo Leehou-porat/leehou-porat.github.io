@@ -214,6 +214,17 @@
   @media (max-width: 960px) { .ai-views { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .ai-views .view-card { aspect-ratio: 9/14; } }
   /* CAROUSEL (coverflow) */
+  .tests { display: grid; grid-template-columns: 3fr 4fr; gap: 18px; align-self: center; }
+  .tg-head { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .tg-head b { color: var(--accent); font-weight: 500; }
+  .tg-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 8px; }
+  .tests .clip .meta { left: 8px; right: 8px; bottom: 8px; }
+  .tests .clip .meta .t { font-size: 12px; }
+  .tests .clip .meta .s { font-size: 9.5px; }
+  .tests .chip { font-size: 9px; padding: 3px 7px; top: 8px; left: 8px; }
+  .tests .clip .play { display: none; }
+  @media (max-width: 860px) { .tests { grid-template-columns: 1fr; gap: 14px; } .tg-grid { grid-template-columns: repeat(4, 1fr); grid-auto-flow: row; } }
+  @media (max-width: 560px) { .tests .clip { border-radius: 10px; } .tests .clip .meta .s { display: none; } .tests .clip .meta { left: 6px; right: 6px; bottom: 6px; } .tests .chip { font-size: 8px; padding: 2px 5px; top: 6px; left: 6px; } }
   .carousel { position: relative; align-self: center; margin: 28px 0; height: clamp(380px, 36vw, 500px); overflow: hidden; border-radius: var(--radius); touch-action: pan-y; }
   .carousel .clip { position: absolute; top: 0; left: 50%; height: calc(100% - 30px); width: auto; aspect-ratio: 9/16; transform: translateX(-50%) scale(.6); opacity: 0; pointer-events: none; transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .55s, filter .55s; }
   .carousel .clip.is-center { transform: translateX(-50%) scale(1); opacity: 1; z-index: 3; pointer-events: auto; }
@@ -598,72 +609,61 @@
     </div>
     <div class="lab reveal">
       <div class="lab-info">
-        <div class="label"><b>Test 1</b> — Hooks &amp; delivery styles</div>
-        <h4>Same footage, same script — three different ads.</h4>
-        <p>Exactly the same footage and the same core message. What changes is the hook <strong>and the whole delivery style</strong> — how the text is spoken, the tone, the pacing and the on-screen look. Side by side, the data shows which way of telling it actually works.</p>
+        <div class="label"><b>Testing</b> — Hooks &amp; styles</div>
+        <h4>One shoot, many ads — the data picks the winner.</h4>
+        <p><strong>Eran:</strong> the same footage and script, cut with three different hooks and delivery styles. <strong>Roni:</strong> the same materials as four concepts — creator-led, infographic, benefit and how-to.</p>
         <div class="lab-flow">
           <div><span>1</span>Shoot once</div>
-          <div><span>2</span>3 versions — new hook, new style</div>
-          <div><span>3</span>Launch &amp; read the data</div>
-        </div>
-      </div>
-      <div class="carousel" data-carousel>
-        <button class="clip v" data-src="media/gx-eran-1.mp4" data-cap="Grynox — Eran · Angle A">
-          <img src="media/gx-eran-1.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
-          <span class="chip">Angle A</span>
-          <span class="meta"><span class="t">Eran<span class="s">Hook + style A</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
-        </button>
-        <button class="clip v" data-src="media/gx-eran-2.mp4" data-cap="Grynox — Eran · Angle B">
-          <img src="media/gx-eran-2.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
-          <span class="chip">Angle B</span>
-          <span class="meta"><span class="t">Eran<span class="s">Hook + style B</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
-        </button>
-        <button class="clip v" data-src="media/gx-eran-3.mp4" data-cap="Grynox — Eran · Angle C">
-          <img src="media/gx-eran-3.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
-          <span class="chip">Angle C</span>
-          <span class="meta"><span class="t">Eran<span class="s">Hook + style C</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
-        </button>
-        <button class="car-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button class="car-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-        <div class="car-dots"></div>
-      </div>
-    </div>
-
-    <div class="lab reveal">
-      <div class="lab-info">
-        <div class="label"><b>Test 2</b> — Creative styles</div>
-        <h4>Same materials — four completely different ads.</h4>
-        <p>Creator-led, infographic, benefit-led ("more views") and how-to ("shoot with your phone"). Different styles reach different people; testing them side by side shows which one scales.</p>
-        <div class="lab-flow">
-          <div><span>1</span>One set of footage</div>
-          <div><span>2</span>Four creative concepts</div>
+          <div><span>2</span>New hooks &amp; styles</div>
           <div><span>3</span>Scale the winner</div>
         </div>
       </div>
-      <div class="carousel" data-carousel>
-        <button class="clip v" data-src="media/gx-roni-creator.mp4" data-cap="Grynox — Roni · Creator">
-          <img src="media/gx-roni-creator.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
-          <span class="chip">Creator</span>
-          <span class="meta"><span class="t">Roni<span class="s">Creator-led</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
-        </button>
-        <button class="clip v" data-src="media/gx-roni-infographic.mp4" data-cap="Grynox — Roni · Infographic">
-          <img src="media/gx-roni-infographic.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
-          <span class="chip">Infographic</span>
-          <span class="meta"><span class="t">Roni<span class="s">Motion infographic</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
-        </button>
-        <button class="clip v" data-src="media/gx-roni-moreviews.mp4" data-cap="Grynox — Roni · More Views">
-          <img src="media/gx-roni-moreviews.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
-          <span class="chip">Benefit</span>
-          <span class="meta"><span class="t">Roni<span class="s">"More views"</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
-        </button>
-        <button class="clip v" data-src="media/gx-roni-shoot.mp4" data-cap="Grynox — Roni · Shoot With Your Phone">
-          <img src="media/gx-roni-shoot.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
-          <span class="chip">How-to</span>
-          <span class="meta"><span class="t">Roni<span class="s">"Shoot with your phone"</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
-        </button>
-        <button class="car-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button class="car-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
-        <div class="car-dots"></div>
+      <div class="tests">
+        <div class="tg">
+          <div class="tg-head"><b>Eran</b> · 3 hooks &amp; styles</div>
+          <div class="tg-grid">
+          <button class="clip v" data-src="media/gx-eran-1.mp4" data-cap="Grynox — Eran · Angle A">
+            <img src="media/gx-eran-1.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+            <span class="chip">Angle A</span>
+            <span class="meta"><span class="t">Eran<span class="s">Hook + style A</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+          </button>
+          <button class="clip v" data-src="media/gx-eran-2.mp4" data-cap="Grynox — Eran · Angle B">
+            <img src="media/gx-eran-2.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+            <span class="chip">Angle B</span>
+            <span class="meta"><span class="t">Eran<span class="s">Hook + style B</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+          </button>
+          <button class="clip v" data-src="media/gx-eran-3.mp4" data-cap="Grynox — Eran · Angle C">
+            <img src="media/gx-eran-3.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+            <span class="chip">Angle C</span>
+            <span class="meta"><span class="t">Eran<span class="s">Hook + style C</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+          </button>
+          </div>
+        </div>
+        <div class="tg">
+          <div class="tg-head"><b>Roni</b> · 4 concepts</div>
+          <div class="tg-grid">
+          <button class="clip v" data-src="media/gx-roni-creator.mp4" data-cap="Grynox — Roni · Creator">
+            <img src="media/gx-roni-creator.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+            <span class="chip">Creator</span>
+            <span class="meta"><span class="t">Roni<span class="s">Creator-led</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+          </button>
+          <button class="clip v" data-src="media/gx-roni-infographic.mp4" data-cap="Grynox — Roni · Infographic">
+            <img src="media/gx-roni-infographic.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+            <span class="chip">Infographic</span>
+            <span class="meta"><span class="t">Roni<span class="s">Infographic</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+          </button>
+          <button class="clip v" data-src="media/gx-roni-moreviews.mp4" data-cap="Grynox — Roni · More Views">
+            <img src="media/gx-roni-moreviews.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+            <span class="chip">Benefit</span>
+            <span class="meta"><span class="t">Roni<span class="s">"More views"</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+          </button>
+          <button class="clip v" data-src="media/gx-roni-shoot.mp4" data-cap="Grynox — Roni · Shoot With Your Phone">
+            <img src="media/gx-roni-shoot.jpg?v=2" alt="" loading="lazy"><video muted playsinline loop preload="none"></video>
+            <span class="chip">How-to</span>
+            <span class="meta"><span class="t">Roni<span class="s">How-to</span></span><span class="play"><svg viewBox="0 0 10 12"><path d="M0 0l10 6-10 6z"/></svg></span></span>
+          </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
