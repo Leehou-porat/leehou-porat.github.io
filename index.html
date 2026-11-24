@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+  // Shared links ending in #highlights should still open at the top of the page
+  if (location.hash === '#highlights') {
+    history.replaceState(null, '', location.pathname + location.search);
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    addEventListener('load', () => scrollTo(0, 0));
+  }
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Leehou Porat — Portfolio</title>
 <meta name="description" content="Leehou Porat — portfolio. A one-man show for performance ads and AI video: hooks, production, AI generation, edit and iteration. Ex-Lightricks, BBR Saatchi & Saatchi, founder of Grynox.">
